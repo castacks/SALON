@@ -6,8 +6,8 @@
 
   <meta charset="utf-8">
   <meta name="description"
-        content="TartanDrive 2.0 Website ">
-  <meta name="keywords" content="TartanDrive, Dataset, ATV, Multi-Modal">
+        content="SALON Website ">
+  <meta name="keywords" content="SALON, Autonomous, Adaptation, ATV">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:image" content="assets/Thumbnail.png" /> <!-- TODO -->
   <title>TartanDrive 2.0 </title>
@@ -93,22 +93,20 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">TartanDrive 2.0: More Modalities and Better Infrastructure to Further Self-Supervised Learning Research in Off-Road Driving Tasks</h1>
+          <h1 class="title is-2 publication-title">SALON: Self-supervised Adaptive Learning for Off-road Navigation</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://matthewjsiv.github.io/">Matthew Sivaprakasam</a><sup>1</sup>,</span>
               <span class="author-block">
-                <a href="https://www.parvmaheshwari.com/">Parv Maheshwari</a><sup>2</sup>,</span>
-                <span class="author-block">
-                  <a href="https://www.mateoguaman.com/">Mateo Guaman Castro</a><sup>1</sup>,</span>
-              <span class="author-block">
                 <a href="https://striest.github.io/">Samuel Triest</a><sup>1</sup>,</span>
                 <span class="author-block">
-                  <a href="https://matthewjsiv.github.io/">Micah Nye</a><sup>3</sup>,</span>
-              <span class="author-block">
-                <a href="https://theairlab.org/team/stevenw/">Steve Willits</a><sup>1</sup>,</span>
-                <span class="author-block">
-                  <a href="https://theairlab.org/team/andrews/">Andrew Saba</a><sup>1</sup>,</span>
+                  <a href="https://cherieho.com/">Cherie Ho</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://shubhraaich.github.io/">Shubhra Aich</a><sup>1</sup>,</span>
+                    <span class="author-block">
+                      <a href="">Jeric Lew</a><sup>2</sup>,</span>
+                      <span class="author-block">
+                        <a href="">Isaiah Adu</a><sup>3</sup>,</span>
                 <span class="author-block">
                   <a href="http://www.wangwenshan.com/">Wenshan Wang</a><sup>1</sup>,</span>
               <span class="author-block">
@@ -118,15 +116,15 @@
 
           <div class="is-size-6 publication-authors">
             <span class="author-block"><sup>1</sup>Carnegie Mellon University</a>,
-              <sup>2</sup>IIT-Kharagpur</a>,
-              <sup>3</sup>University of Pittsburgh</a>
+              <sup>2</sup>National University of Singapore</a>,
+              <sup>3</sup>Pennsylvania State University</a>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="assets/TartanDrive_2_0_ICRA_2024.pdf"
+                <a href=""
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -145,7 +143,7 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://drive.google.com/file/d/1J-KePd_W2gOLecS1YwolOlKhKFw3ANbF/view?usp=sharing"
+                <a href="https://drive.google.com/file/d/1rMKKNeytyOUACF0fpVCuPbIQqTxWyWsj/view?usp=sharing"
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -155,24 +153,15 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/castacks/tartan_drive_2.0"
+                <a href="https://github.com/castacks/salon_ws"
                    class="external-link button is-normal ">
                   <span class="icon">
-                      <i class="fa fa-globe"></i>
+                      <i class="fab fa-github"></i>
                   </span>
-                  <span>Data</span>
+                  <span>Code</span>
                   </a>
               </span>
-              <!-- Demo Link. -->
-              <span class="link-block">
-                <a href="#interactive_demo"
-                   class="external-link button is-normal">
-                  <span class="icon">
-                      <i class="fa fa-search"></i>
-                  </span>
-                  <span>Demo</span>
-                  </a>
-              </span>
+
 
 
               <!-- Dataset Link. -->
@@ -317,7 +306,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-          We present TartanDrive 2.0, a large-scale off-road driving dataset for self-supervised learning tasks. In 2021 we released TartanDrive 1.0, which is one of the largest datasets for off-road terrain. As a follow-up to our original dataset, we collected seven hours of data at speeds of up to 15m/s with the addition of three new LiDAR sensors alongside the original camera, inertial, GPS, and proprioceptive sensors. We also release the tools we use for collecting, processing, and querying the data, including our metadata system designed to further the utility of our data. Custom infrastructure allows end users to reconfigure the data to cater to their own platforms. These tools and infrastructure alongside the dataset are useful for a variety of tasks in the field of off-road autonomy and, by releasing them, we encourage collaborative data aggregation. These resources lower the barrier to entry to utilizing large-scale datasets, thereby helping facilitate the advancement of robotics in areas such as self-supervised learning, multi-modal perception, inverse reinforcement learning, and representation learning.
+          Autonomous robot navigation in off-road environments presents a number of challenges due to its lack of structure, making it difficult to handcraft robust heuristics for diverse scenarios. While learned methods using hand labels or self-supervised data improve generalizability, they often require a tremendous amount of data and can be vulnerable to domain shifts. To improve generalization in novel environments, recent works have incorporated adaptation and self-supervision to develop autonomous systems that can learn from their own experiences online. However, current works often rely on significant prior data, for example minutes of human teleoperation data for each terrain type, which is difficult to scale with more environments and robots. To address these limitations, we propose SALON, a perception-action framework for fast adaptation of traversability estimates with minimal human input. SALON rapidly learns online from experience while avoiding out of distribution terrains to produce adaptive and risk-aware cost and speed maps. Within seconds of collected experience, our results demonstrate comparable navigation performance over kilometer-scale courses in diverse off-road terrain as methods trained on 100-1000x more data. We additionally show promising results on significantly different robots in different environments.
           </p>
         </div>
       </div>
@@ -428,7 +417,7 @@
           <div id="GroundPlane"></div>
         </div>
       </div>
-      
+
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
       <script src = "demo/plot.js"></script>
 
