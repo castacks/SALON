@@ -355,33 +355,33 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Results</h2>
+          <h2 class="title is-3">Autonomy Results</h2>
           <div class="buttons is-centered">
-            <button class="button is-primary" onclick="showContent(1)">Autonomy Course</button>
-            <button class="button is-link" onclick="showContent(2)">Option 2</button>
-            <button class="button is-info" onclick="showContent(3)">Option 3</button>
-            <button class="button is-info" onclick="showContent(3)">Option 4</button>
+            <button class="button is-primary" onclick="showContent(1,1)">Autonomy Course</button>
+            <button class="button is-link" onclick="showContent(2,1)">Option 2</button>
+            <button class="button is-info" onclick="showContent(3,1)">Option 3</button>
+            <button class="button is-info" onclick="showContent(4,1)">Option 4</button>
           </div>
           <div id="dynamic-content">
-            <div class="content-section active" id="content-1">
+            <div class="content-section active" id="content-1-1">
               <!-- <h2 class="title is-3">Autonomy Course</h2> -->
               <div class="content has-text-justified">
                 <img src="assets/courses.png" alt="Experiment Overview" />
               </div>
             </div>
-            <div class="content-section" id="content-2">
+            <div class="content-section" id="content-1-2">
               <h2 class="title is-3">Details for Option 2</h2>
               <div class="content has-text-justified">
                 <p>Here's the content for option 2 with detailed insights and additional information.</p>
               </div>
             </div>
-            <div class="content-section" id="content-3">
+            <div class="content-section" id="content-1-3">
               <h2 class="title is-3">Details for Option 3</h2>
               <div class="content has-text-justified">
                 <p>Here are the insights and descriptions for option 3, tailored for specific needs.</p>
               </div>
             </div>
-            <div class="content-section" id="content-4">
+            <div class="content-section" id="content-1-4">
               <h2 class="title is-3">Details for Option 4</h2>
               <div class="content has-text-justified">
                 <p>Here are the insights and descriptions for option 4, tailored for specific needs.</p>
@@ -394,7 +394,32 @@
   </div>
 </section>
 
-<section class="hero">
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Robot+Sensor Generalizability</h2>
+          <div class="buttons is-centered">
+            <button class="button is-primary" onclick="showContent(5,2)">Other Stuff</button>
+            <button class="button is-link" onclick="showContent(6,2)">Other 2</button>
+          </div>
+          <div id="dynamic-content">
+            <div class="content-section active" id="content-2-5">
+              <!-- <h2 class="title is-3">Autonomy Course</h2> -->
+              more stuff
+            </div>
+            <div class="content-section" id="content-2-6">
+             more stuff 2
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light">
   <div class="hero-body">
   <!-- Paper video. -->
   <div class="columns is-centered has-text-centered">
@@ -563,15 +588,21 @@
 </script> -->
 
 <script>
-  function showContent(option) {
+  function showContent(option,section) {
     // Remove the active class from all sections
-    const sections = document.querySelectorAll(".content-section");
-    sections.forEach(section => {
-      section.classList.remove("active");
+    // const parentContainer = document.getElementById(`dynamic-content-${section}`);
+
+    const button = event.target;
+    const parentContainer = button.closest(".hero");
+
+    // Remove the active class from all content sections within this container
+    const sections = parentContainer.querySelectorAll(".content-section");
+    sections.forEach(contentSection => {
+      contentSection.classList.remove("active");
     });
 
     // Add the active class to the selected section
-    const selectedSection = document.getElementById(`content-${option}`);
+    const selectedSection = document.getElementById(`content-${section}-${option}`);
     if (selectedSection) {
       selectedSection.classList.add("active");
     }
