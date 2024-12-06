@@ -43,6 +43,10 @@
   <script src="./static/js/index.js"></script>
 
   <style>
+    .line-height-adjust {
+            line-height: 1.1;
+        }
+
     .blockMobile {
       display: none; /* Hide the component by default */
     }
@@ -62,6 +66,28 @@
         display: block; /* Show the component for screen width 768px and above (desktop) */
       }
     }
+
+    #dynamic-content {
+  position: relative; /* Ensure the content sections are positioned relative to this container */
+  min-height: 200px; /* Optional: Set a minimum height to prevent collapsing before content is displayed */
+    }
+
+    #dynamic-content .content-section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #dynamic-content .content-section.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative; /* Allow active content to influence the height of #dynamic-content */
+    }
+
   </style>
 
 </head>
@@ -124,7 +150,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="assets/Adaptive_Costmaps_ICRA_2025__arxiv_.pdf"
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -280,10 +306,28 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-          Autonomous robot navigation in off-road environments presents a number of challenges due to its lack of structure, making it difficult to handcraft robust heuristics for diverse scenarios. While learned methods using hand labels or self-supervised data improve generalizability, they often require a tremendous amount of data and can be vulnerable to domain shifts. To improve generalization in novel environments, recent works have incorporated adaptation and self-supervision to develop autonomous systems that can learn from their own experiences online. However, current works often rely on significant prior data, for example minutes of human teleoperation data for each terrain type, which is difficult to scale with more environments and robots. To address these limitations, we propose SALON, a perception-action framework for fast adaptation of traversability estimates with minimal human input. SALON rapidly learns online from experience while avoiding out of distribution terrains to produce adaptive and risk-aware cost and speed maps. Within seconds of collected experience, our results demonstrate comparable navigation performance over kilometer-scale courses in diverse off-road terrain as methods trained on 100-1000x more data. We additionally show promising results on significantly different robots in different environments.
+          <!-- Autonomous robot navigation in off-road environments presents a number of challenges due to its lack of structure, making it difficult to handcraft robust heuristics for diverse scenarios. While learned methods using hand labels or self-supervised data improve generalizability, they often require a tremendous amount of data and can be vulnerable to domain shifts. To improve generalization in novel environments, recent works have incorporated adaptation and self-supervision to develop autonomous systems that can learn from their own experiences online. However, current works often rely on significant prior data, for example minutes of human teleoperation data for each terrain type, which is difficult to scale with more environments and robots. To address these limitations, we propose SALON, a perception-action framework for fast adaptation of traversability estimates with minimal human input. SALON rapidly learns online from experience while avoiding out of distribution terrains to produce adaptive and risk-aware cost and speed maps. Within seconds of collected experience, our results demonstrate comparable navigation performance over kilometer-scale courses in diverse off-road terrain as methods trained on 100-1000x more data. We additionally show promising results on significantly different robots in different environments. -->
+          Robot autonomy in off-road environments presents a number of challenges that make it difficult to handcraft navigation heuristics that are robust to diverse scenarios. While learned methods using hand labels or self-supervised data improve generalizability, they often require a tremendous amount of data and can be vulnerable to domain shifts. To improve generalization in novel environments, recent works have incorporated adaptation and self-supervision to develop autonomous systems that can learn from their own experiences online. However, they often rely on significant prior data, for example minutes of human teleoperation data, which is difficult to scale to more environments and robots. To address these limitations, we propose SALON, a perception-action framework for fast adaptation of traversability estimates with minimal human input. SALON rapidly learns online from experience while avoiding out of distribution terrain to produce adaptive and risk-aware cost and speed maps. Within seconds of collected experience, our results demonstrate comparable navigation performance over kilometer-scale courses in diverse off-road terrain as methods trained on 100-1000x more data. We additionally show promising results on significantly different robots in different environments.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">How It Works</h2>
+        <div class="content has-text-justified">
+          <img source src="assets/flowchart.png" />
+          <p>
+            Using visual foundation models (such as DINOv2) as feature extractors is key to our approach. By grounding their generalizable features with proprioceptive feedback, robots can quickly adapt their understanding of the world through their own experiences without a human in the loop.
           </p>
         </div>
       </div>
@@ -310,6 +354,81 @@
 
 
 
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Autonomy Results</h2>
+          <div class="buttons is-centered">
+            <button class="button is-primary line-height-adjust" onclick="showContent(1,1)">Autonomy<br />Course</button>
+            <button class="button is-link" onclick="showContent(2,1)">Costmaps</button>
+            <button class="button is-info" onclick="showContent(3,1)">Speedmaps</button>
+            <button class="button is-success" onclick="showContent(4,1)">Adaptation</button>
+          </div>
+          <div id="dynamic-content">
+            <div class="content-section active" id="content-1-1">
+              <!-- <h2 class="title is-3">Autonomy Course</h2> -->
+              <div class="content has-text-justified">
+                <p>We run our autonomy experiments on a Yamaha Viking All-Terrain Vehicle, with two courses shown below. <b>Course 1</b> consists of waypoints spaced 50m apart, and <b>Course 2</b> consists of waypoints with varying spacing up to 200m. The VLAD clusters used for feature generation were copmuted from sample images collected from the "training data" zone. For each run, the system is initialized with no prior environment interaction data, and a single high-cost tree label from the training data area.</p>
+                <img src="assets/courses.png" alt="Experiment Overview" />
+              </div>
+            </div>
+            <div class="content-section" id="content-1-2">
+              <div class="content has-text-justified">
+                <p>SALON's is able to not only avoid lethal vegetation but also distinguish fine-grained terrain properties. Rough gravel in the middle of the trail below is higher cost than the smoother areas around it.</p>
+                <img src="assets/results/turnpike_hill.png" alt="Cosmtaps" />
+              </div>
+            </div>
+            <div class="content-section" id="content-1-3">
+              <div class="content has-text-justified">
+                <p>Prediction of speedmaps allows the system to go faster where appropriate. As seen below, it is predicted that the robot can drive faster on trail than in grass.</p>
+                <img src="assets/results/turnpike_speedmap.png" alt="Speedmaps" />
+              </div>
+            </div>
+            <div class="content-section" id="content-1-4">
+              <div class="content has-text-justified">
+                <p>Example of SALON's fast adaptation: Within 10 seconds of experiencing grass for the first time, SALON is able to quickly differentiate key terrains, such as, ideal short grass, riskier vegetation and lethal trees.</p>
+                <img src="assets/results/adaptation_fig8.png" alt="Adaptation" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Robot+Sensor Generalizability</h2>
+          <div class="buttons is-centered">
+            <button class="button is-primary line-height-adjust" onclick="showContent(5,2)">Wheelchair - <br />Urban</button>
+            <button class="button is-link line-height-adjust" onclick="showContent(6,2)">Quadruped - <br />Urban + Nature</button>
+          </div>
+          <div id="dynamic-content">
+            <div class="content-section active" id="content-2-5">
+              <div class="content has-text-justified">
+                <p>Evaluation on wheelchair in urban environment: After driving over rough cobblestone, the system quickly recognizes within 5 seconds that it is much rougher than the smooth sidewalk.</p>
+                <img src="assets/results/wheelchair_v1-5.png" alt="Adaptation" />
+              </div>
+            </div>
+            <div class="content-section" id="content-2-6">
+              <div class="content has-text-justified">
+                <p>With the same amount of data as Wild Visual Navigation, our method is able to correctly cost lethal objects like trees and walls without incorrectly costing short grass. Like WVN, we leverage only use visual features, and geometric information is used only to place them in the map.</p>
+                <img src="assets/results/wvn_compare_v2.png" alt="Adaptation" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="hero is-light">
   <div class="hero-body">
   <!-- Paper video. -->
@@ -326,20 +445,6 @@
   <!--Paper video-->
 
 </section>
-
-<section class="hero is-small is-light">
-  <div class="hero-body">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Experiment Overview</h2>
-        <div class="content has-text-justified">
-          <img source src="assets/courses.png" />
-        </div>
-      </div>
-    </div>
-    </div>
 
 
 
@@ -469,6 +574,51 @@
     </div>
   </div>
 </footer> -->
+<!-- <script>
+  function showContent(option) {
+    const contentDiv = document.getElementById("dynamic-content");
+    let content = "";
+
+    switch (option) {
+      case 1:
+        content = `<p>Option 1 content: This is the description for the first option. It's tailored to give more details on this specific choice.</p>`;
+        break;
+      case 2:
+        content = `<p>Option 2 content: Here's what you need to know about the second option. It provides an alternative perspective.</p>`;
+        break;
+      case 3:
+        content = `<p>Option 3 content: The third option focuses on a different set of features and benefits, perfect for certain scenarios.</p>`;
+        break;
+      default:
+        content = `<p>Select an option to see more details.</p>`;
+    }
+
+    contentDiv.innerHTML = content;
+  }
+</script> -->
+
+<script>
+  function showContent(option,section) {
+    // Remove the active class from all sections
+    // const parentContainer = document.getElementById(`dynamic-content-${section}`);
+
+    const button = event.target;
+    const parentContainer = button.closest(".hero");
+
+    // Remove the active class from all content sections within this container
+    const sections = parentContainer.querySelectorAll(".content-section");
+    sections.forEach(contentSection => {
+      contentSection.classList.remove("active");
+    });
+
+    // Add the active class to the selected section
+    const selectedSection = document.getElementById(`content-${section}-${option}`);
+    if (selectedSection) {
+      selectedSection.classList.add("active");
+    }
+  }
+</script>
+
 
 </body>
 </html>
