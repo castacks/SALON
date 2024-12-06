@@ -47,6 +47,10 @@
             line-height: 1.1;
         }
 
+        .button-shadow {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
     .blockMobile {
       display: none; /* Hide the component by default */
     }
@@ -361,10 +365,10 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Autonomy Results</h2>
           <div class="buttons is-centered">
-            <button class="button is-primary line-height-adjust" onclick="showContent(1,1)">Autonomy<br />Course</button>
-            <button class="button is-link" onclick="showContent(2,1)">Costmaps</button>
-            <button class="button is-info" onclick="showContent(3,1)">Speedmaps</button>
-            <button class="button is-success" onclick="showContent(4,1)">Adaptation</button>
+            <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Autonomy<br />Course</button>
+            <button class="button is-link button-shadow" onclick="showContent(2,1)">Costmaps</button>
+            <button class="button is-info button-shadow" onclick="showContent(3,1)">Speedmaps</button>
+            <button class="button is-success button-shadow" onclick="showContent(4,1)">Adaptation</button>
           </div>
           <div id="dynamic-content">
             <div class="content-section active" id="content-1-1">
@@ -406,8 +410,8 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Robot+Sensor Generalizability</h2>
           <div class="buttons is-centered">
-            <button class="button is-primary line-height-adjust" onclick="showContent(5,2)">Wheelchair - <br />Urban</button>
-            <button class="button is-link line-height-adjust" onclick="showContent(6,2)">Quadruped - <br />Urban + Nature</button>
+            <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(5,2)">Wheelchair - <br />Urban</button>
+            <button class="button is-link line-height-adjust button-shadow" onclick="showContent(6,2)">Quadruped - <br />Urban + Nature</button>
           </div>
           <div id="dynamic-content">
             <div class="content-section active" id="content-2-5">
