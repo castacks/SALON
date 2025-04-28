@@ -55,6 +55,13 @@
       display: none; /* Hide the component by default */
     }
 
+    .image-overlay {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(30%) translateY(-50%);
+  }
+
     @media only screen and (min-width: 768px) {
       .blockMobile {
         display: block; /* Show the component for screen width 768px and above (desktop) */
@@ -65,10 +72,27 @@
       display: none; /* Hide the component by default */
     }
 
+    .bar-image {
+      max-width: 100px;
+      height: auto;
+    }
+
     @media only screen and (max-width: 768px) {
       .showMobile {
         display: block; /* Show the component for screen width 768px and above (desktop) */
       }
+
+      .image-overlay {
+      position: relative; /* Move the image below the text */
+      top: 0;
+      transform: none; /* Remove vertical centering */
+      margin-top: 20px; /* Space between text and image */
+      margin-right: 0; /* Remove right alignment */
+    }
+
+    .bar-image {
+      display: none;
+    }
     }
 
     #dynamic-content {
@@ -163,7 +187,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/abs/2412.07826"
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -224,24 +248,36 @@
             <source src="./assets/videos/Turnpike_Merged_1_small.mp4"
                     type="video/mp4">
           </video>
+          <h2 class="subtitle has-text-centered">
+            <span class="coolname">staying on trail while avoiding uncertain objects such as tires</span>
+          </h2>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="steve" autoplay controls muted loop playsinline width="100%">
             <source src="./assets/videos/Turnpike_Merged_2_small.mp4"
                     type="video/mp4">
           </video>
+          <h2 class="subtitle has-text-centered">
+            <span class="coolname">preference for smooth vegetation, without human labels</span>
+          </h2>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="steve" autoplay controls muted loop playsinline width="100%">
             <source src="./assets/videos/Wheelchair_Merged_1_small.mp4"
                     type="video/mp4">
           </video>
+          <h2 class="subtitle has-text-centered">
+            <span class="coolname">quick adaptation to novel terrain (cobblestone)</span>
+          </h2>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="steve" autoplay controls muted loop playsinline width="100%">
             <source src="./assets/videos/Anymal_Merged_1_small.mp4"
                     type="video/mp4">
           </video>
+          <h2 class="subtitle has-text-centered">
+            <span class="coolname">easy deployment on other robots</span>
+          </h2>
         </div>
 
         <!-- <div class="item item-chair-tp">
@@ -295,7 +331,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
 
-        <img source src="assets/title.png" />
+        <img source src="assets/title_v7.png" />
 
       <h2 class="subtitle has-text-centered">
         <span class="coolname">with one prior hand-label, our system running SALON learns from its own experience in the real-world to predict where and how fast to drive.</span>
@@ -327,12 +363,28 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">How It Works</h2>
+        <h2 class="title is-3">VFMs + Proprioception + Smart Buffer Management = Fast Adaptation</h2>
         <div class="content has-text-justified">
           <img source src="assets/flowchart.png" />
           <p>
             Using visual foundation models (such as DINOv2) as feature extractors is key to our approach. By grounding their generalizable features with proprioceptive feedback, robots can quickly adapt their understanding of the world through their own experiences without a human in the loop.
           </p>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Fast Adaptation Example</h2>
+        <div class="content has-text-justified">
+          <img source src="assets/results/adaptation_fig8.png" />
+          <p>
+            Example of SALON's fast adaptation: Within 10 seconds of experiencing grass for the first time, SALON is able to quickly differentiate key terrains, such as, ideal short grass, riskier vegetation and lethal trees.          </p>
         </div>
       </div>
     </div>
@@ -358,7 +410,7 @@
 
 
 
-<section class="hero is-small is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -366,21 +418,21 @@
           <h2 class="title is-3">Autonomy Results</h2>
           <div class="buttons is-centered">
             <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Autonomy<br />Course</button>
-            <button class="button is-link button-shadow" onclick="showContent(2,1)">Costmaps</button>
-            <button class="button is-info button-shadow" onclick="showContent(3,1)">Speedmaps</button>
-            <button class="button is-success button-shadow" onclick="showContent(4,1)">Adaptation</button>
+            <button class="button is-link button-shadow" onclick="showContent(2,1)">Show Costmaps</button>
+            <button class="button is-info button-shadow" onclick="showContent(3,1)">Show Speedmaps</button>
+            <button class="button is-success button-shadow" onclick="showContent(4,1)">Metrics</button>
           </div>
           <div id="dynamic-content">
             <div class="content-section active" id="content-1-1">
               <!-- <h2 class="title is-3">Autonomy Course</h2> -->
               <div class="content has-text-justified">
-                <p>We run our autonomy experiments on a Yamaha Viking All-Terrain Vehicle, with two courses shown below. <b>Course 1</b> consists of waypoints spaced 50m apart, and <b>Course 2</b> consists of waypoints with varying spacing up to 200m. The VLAD clusters used for feature generation were copmuted from sample images collected from the "training data" zone. For each run, the system is initialized with no prior environment interaction data, and a single high-cost tree label from the training data area.</p>
+                <p>We run our autonomy experiments on a Yamaha Viking All-Terrain Vehicle, with two courses shown below. <b>Course 1</b> consists of waypoints spaced 50m apart, and <b>Course 2</b> consists of waypoints with varying spacing up to 200m. The VLAD clusters used for feature generation were computed from sample images collected from the "training data" zone. For each run, the system is initialized with no prior environment interaction data, and a single high-cost tree label from the training data area.</p>
                 <img src="assets/courses.png" alt="Experiment Overview" />
               </div>
             </div>
             <div class="content-section" id="content-1-2">
               <div class="content has-text-justified">
-                <p>SALON's is able to not only avoid lethal vegetation but also distinguish fine-grained terrain properties. Rough gravel in the middle of the trail below is higher cost than the smoother areas around it.</p>
+                <p>SALON is able to not only avoid lethal vegetation but also distinguish fine-grained terrain properties. Rough gravel in the middle of the trail below is higher cost than the smoother areas around it.</p>
                 <img src="assets/results/turnpike_hill.png" alt="Cosmtaps" />
               </div>
             </div>
@@ -392,18 +444,28 @@
             </div>
             <div class="content-section" id="content-1-4">
               <div class="content has-text-justified">
+                <p>We show our method on 5 laps of course 1 against 4 other baselines. With no prior experience except for one hand-label, it quickly adapts and by the second lap already demonstrates comparable performance to Velociraptor (the prior state of the art).</p>
+                <img src="assets/results/metrics.png" alt="metrics" />
+              </div>
+            </div>
+            <!-- <div class="content-section" id="content-1-4">
+              <div class="content has-text-justified">
                 <p>Example of SALON's fast adaptation: Within 10 seconds of experiencing grass for the first time, SALON is able to quickly differentiate key terrains, such as, ideal short grass, riskier vegetation and lethal trees.</p>
                 <img src="assets/results/adaptation_fig8.png" alt="Adaptation" />
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
+        <!-- <div class="column is-narrow is-align-self-center"> -->
+          <div class="column is-narrow image-overlay">
+            <img src="assets/colorbars.png" alt="colorbars" class="bar-image">
+          </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-small">
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -428,12 +490,15 @@
             </div>
           </div>
         </div>
+        <div class="column is-narrow image-overlay">
+          <img src="assets/costbar.png" alt="costbar" class="bar-image">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-light">
+<section class="hero">
   <div class="hero-body">
   <!-- Paper video. -->
   <div class="columns is-centered has-text-centered">
@@ -467,20 +532,22 @@
 });
 </script>
 
-<!-- <section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title is-3">BibTeX</h2>
     <pre><code>
-      @misc{sivaprakasam2024tartandrive,
-      title={TartanDrive 2.0: More Modalities and Better Infrastructure to Further Self-Supervised Learning Research in Off-Road Driving Tasks},
-      author={Matthew Sivaprakasam, Parv Maheshwari, Mateo Guaman Castro, Samuel Triest, Micah Nye, Steve Willits, Andrew Saba, Wenshan Wang, Sebastian Scherer},
-      year={2024},
-      eprint={2402.01913},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}}
+      @misc{sivaprakasam2024salonselfsupervisedadaptivelearning,
+        title={SALON: Self-supervised Adaptive Learning for Off-road Navigation}, 
+        author={Matthew Sivaprakasam and Samuel Triest and Cherie Ho and Shubhra Aich and Jeric Lew and Isaiah Adu and Wenshan Wang and Sebastian Scherer},
+        year={2024},
+        eprint={2412.07826},
+        archivePrefix={arXiv},
+        primaryClass={cs.RO},
+        url={https://arxiv.org/abs/2412.07826}, 
+  }
     </code></pre>
   </div>
-</section> -->
+</section>
 
 
 <style>
